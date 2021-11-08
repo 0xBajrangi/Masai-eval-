@@ -16,31 +16,42 @@
 <body>
 <div class="contain">
     <h1>login</h1>
-    <form id="login" onsubmit="register(event)">
-        <input type="text" placeholder="Name" id="name">
-        <input type="text" placeholder="email" id="email">
-        <input type="text" placeholder="password" id="password">
+    <form id="login" onsubmit="login(event)">
+       
         <input type="text" placeholder="username" id="username">
-        <input type="text" placeholder="mobile" id="mobile">
-        <input type="text" placeholder="description" id="description">
+        <input type="text" placeholder="password" id="password">
+    
         <input type="submit" value="Register">
 
     </form>
 </div>
 <script>
 
-function onsubmit(event) {
+ function login(event) {
     event.preventDefault();
     let login = document.getElementById("login");
     let obj = {
-        name:login.name.value,
-        email:login.email.value,
-        password:login.password.value,
+        
         username:login.username.value,
-        mobile:login.mobile.value,
-        description:login.description.value,
+        password:login.password.value,
+       
     }
-    console.log(obj);
+     
+    fetch("http://masai-api-mocker.herokuapp.com/auth/login",{
+        method:"POST",
+        body:JSON.stringify(obj),
+        headers:{"Content-Type": "application/json"}
+    }).then((res)=>{
+        return res.json();
+    }).then((res)=>{
+       alert("Success!");
+       window.location.href = "./index.html";
+    }).catch((err)=>{
+        console.log(err);
+    });
+    
+    
+
 }
 </script>
 </body>
