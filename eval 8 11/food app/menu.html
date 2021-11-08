@@ -5,16 +5,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
+    <style>
+        .menu{
+            display:grid;
+grid-gap: 20px;
+           
+            grid-template-columns: 33% 33% 33%;
+        }
+        .food > img{
+height: 200px;
+width: 100%;
+        }
+        .food{
+            border: 1px solid black;
+        }
+        .food > p ,.food>span{
+            margin-left: 20px;
+        }
+        .food>div{
+            width: 70px;
+            height: 40px;
+            line-height: 40px;
+            background-color: black;
+            color:white;
+            text-align: center;
+            margin:auto;
+            margin-bottom: 10px;border-radius:10px;
+            cursor:pointer;
+
+        }
+    </style>
+
 </head>
 <body>
     
 
-    <div class="menu">
+    <div class="menu" id="menu">
 
     </div>
 
 </body>
 <script>
-    
+
+ 
+
+
+
+    fetch("http://www.themealdb.com/api/json/v1/1/search.php?f=b").then((res)=>{
+        return res.json();
+    }).then((res)=>{
+    showMenu(res.meals.slice(0,10));
+    }).catch((err)=>{
+        console.log(err);
+    })
+
+
+     
+    function showMenu(menu){
+        console.log(menu)
+         let parent = document.getElementById("menu");
+parent.innerHTML =null;
+         menu.forEach((food)=>{
+             let div = document.createElement("div");
+             div.setAttribute("class", "food")
+             let img = document.createElement("img");
+             let name = document.createElement("span");
+             let description = document.createElement("p");
+             let price = document.createElement("p");
+             let to_cart = document.createElement("div");
+
+             to_cart.onclick=()=>{
+                 addtocart(food);
+                 alert("added to Cart");
+             }
+
+             img.src = food.strMealThumb;
+             name.innertext =food.strMeal; 
+             description.innertext =food.strTags; 
+             price.innerHTML ="Price - " + food.idMeal.slice(1,4); 
+             to_cart.innerText = "Buy";
+div.append(img,name,description,price,to_cart);
+parent.append(div);
+
+         });
+    }
+
+    function addtocart(food){
+    if(localStorage.getItem("cart") == null){
+        localStorage.setItem("cart",JSON.stringify([food]));
+    }else{
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        cart.push(food);
+        localStorage.setItem("cart",JSON.stringify(cart));
+
+    }
+    }
+
+
 </script>
 </html>
