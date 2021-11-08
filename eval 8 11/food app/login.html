@@ -12,6 +12,7 @@
     </style>
 </head>
 <body>
+    <div id="nav"></div>
 <div class="contain">
     <h1>login</h1>
     <form id="login" onsubmit="login(event)">
@@ -23,9 +24,7 @@
 
     </form>
 </div>
-<script type="module">
-    import {navbar} from "./navbar.js"
-     document.getElementById("nav").innerHTML =navbar();
+<script >
 
 
  function login(event) {

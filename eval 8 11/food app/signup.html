@@ -31,9 +31,9 @@
 
     </form>
 </div>
-<script type="module">
-    import {navbar} from "./navbar.js"
-     document.getElementById("nav").innerHTML =navbar();
+<script >
+    // import {navbar} from "./navbar.js"
+    //  document.getElementById("nav").innerHTML =navbar();
 
 
 
@@ -47,7 +47,7 @@
         username:login.username.value,
         mobile:login.mobile.value,
         description:login.description.value,
-    }
+    };
      
     fetch("http://masai-api-mocker.herokuapp.com/auth/register",{
         method:"POST",
