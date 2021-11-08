@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        #login{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="contain">
+    <h1>login</h1>
+    <form id="login" onsubmit="register(event)">
+        <input type="text" placeholder="Name" id="name">
+        <input type="text" placeholder="email" id="email">
+        <input type="text" placeholder="password" id="password">
+        <input type="text" placeholder="username" id="username">
+        <input type="text" placeholder="mobile" id="mobile">
+        <input type="text" placeholder="description" id="description">
+        <input type="submit" value="Register">
+
+    </form>
+</div>
+<script>
+
+function onsubmit(event) {
+    event.preventDefault();
+    let login = document.getElementById("login");
+    let obj = {
+        name:login.name.value,
+        email:login.email.value,
+        password:login.password.value,
+        username:login.username.value,
+        mobile:login.mobile.value,
+        description:login.description.value,
+    }
+    console.log(obj);
+}
+</script>
+</body>
+</html>
