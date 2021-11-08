@@ -5,23 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food App</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        .navbar{
-            border: 1px solid black;
-            display: flex;
-            gap: 20px;
-            padding:10px;
-        }
+      
 
     </style>
 </head>
 <body>
-<div class="navbar">
-      <div><a href="menu.html">Menu</a></div>
-      <div><a href="login.html">Login</a></div>
-      <div><a href="signup.html">signup</a></div>
-      <div><a href="cart.html">Cart</a></div>
-       
-    </div>
+<div id="nav"></div>
 </body>
+<script type="module">
+    import {navbar} from "./navbar.js"
+     document.getElementById("nav").innerHTML =navbar();
+
+
+    
+</script>
 </html>

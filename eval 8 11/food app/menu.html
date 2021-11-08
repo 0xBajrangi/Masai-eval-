@@ -5,47 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <style>
-        .menu{
-            display:grid;
-grid-gap: 20px;
-           
-            grid-template-columns: 33% 33% 33%;
-        }
-        .food > img{
-height: 200px;
-width: 100%;
-        }
-        .food{
-            border: 1px solid black;
-        }
-        .food > p ,.food>span{
-            margin-left: 20px;
-        }
-        .food>div{
-            width: 70px;
-            height: 40px;
-            line-height: 40px;
-            background-color: black;
-            color:white;
-            text-align: center;
-            margin:auto;
-            margin-bottom: 10px;border-radius:10px;
-            cursor:pointer;
+    <link rel="stylesheet" href="style.css">
 
-        }
+    <style>
+   
     </style>
 
 </head>
 <body>
     
-
+<div id="nav"></div>
     <div class="menu" id="menu">
 
     </div>
 
 </body>
-<script>
+<script type="module">
+    import {navbar} from "./navbar.js"
+     document.getElementById("nav").innerHTML =navbar();
+
 
  
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>cart</title>
+</head>
+<body>
+<div id="nav"></div>
+   <div class="menu" id="menu">
+
+    </div>
+    <div id="proceed" >
+        Place order
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script type="module">
+    import {navbar} from "./navbar.js"
+     document.getElementById("nav").innerHTML =navbar();
+
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    console.log(cart);
+    showcart(cart);
+
+      function showcart(menu){
+        console.log(menu)
+         let parent = document.getElementById("menu");
+parent.innerHTML =null;
+         menu.forEach((food)=>{
+             let div = document.createElement("div");
+             div.setAttribute("class", "food")
+             let img = document.createElement("img");
+             let name = document.createElement("span");
+             let description = document.createElement("p");
+             let price = document.createElement("p");
+            //  let to_cart = document.createElement("div");
+
+            
+
+             img.src = food.strMealThumb;
+             name.innertext =food.strMeal; 
+             description.innertext =food.strTags; 
+             price.innerHTML ="Price - " + food.idMeal.slice(1,4); 
+            //  to_cart.innerText = "Buy";
+div.append(img,name,description,price);
+parent.append(div);
+
+         });
+    }
+
+
+document.getElementById("proceed").addEventListener("click",proceed)
+async function proceed(){
+
+   alert("Your Order is accepted!");
+   
+   let second = await setTimeout(()=>{
+       alert("Your order is being cooked!")
+   }, 3000);
+
+    let third = await setTimeout(()=>{
+        alert("Your order is ready")
+    },8000);
+
+    let fourth = await setTimeout(()=>{
+        alert("Out for delivery")},10000);
+
+    let fifth = await setTimeout(()=>{
+        alert("Order Delivered");
+    },12000);
+
+
+
+}
+
+
+
+    
+</script>
+</body>
+</html>

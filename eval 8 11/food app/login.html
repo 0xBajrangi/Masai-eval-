@@ -5,12 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+
     <style>
-        #login{
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+       
     </style>
 </head>
 <body>
@@ -25,7 +23,10 @@
 
     </form>
 </div>
-<script>
+<script type="module">
+    import {navbar} from "./navbar.js"
+     document.getElementById("nav").innerHTML =navbar();
+
 
  function login(event) {
     event.preventDefault();

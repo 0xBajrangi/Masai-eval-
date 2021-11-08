@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
+    <link rel="stylesheet" href="style.css">
+
     <style>
         #login{
             display: flex;
@@ -14,6 +16,8 @@
     </style>
 </head>
 <body>
+<div id="nav"></div>
+
 <div class="contain">
     <h1>signup</h1>
     <form id="login" onsubmit="register(event)">
@@ -27,7 +31,11 @@
 
     </form>
 </div>
-<script>
+<script type="module">
+    import {navbar} from "./navbar.js"
+     document.getElementById("nav").innerHTML =navbar();
+
+
 
  function register(event) {
     event.preventDefault();
