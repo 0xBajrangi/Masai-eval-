@@ -17,7 +17,8 @@ const companySchema = new mongoose.Schema({
     workFromHome: { type: String, required: true },
     notice_periode: { type: Number, required: true },
     skill_required: [{ type: String, required: true }],
-    rating: { type: Number, required: true }
+    rating: { type: Number, required: true },
+    jobs_open:{type: Number, required: true}
     
     
 }, {
@@ -91,7 +92,7 @@ app.get("/rating", async (req, res) => {
 
     try {
          
-         const companies = await Company.find({ notice_periode:req.params.id}).lean().exec();
+        const companies = await Company.find().sort({ rating: -1 }).lean().exec();
         return res.status(201).send(companies);
          
        
@@ -99,7 +100,21 @@ app.get("/rating", async (req, res) => {
         return res.status(500).json({ message: e });
     }
 
-})
+});
+app.get("/openjobs", async (req, res) => {
+    
+
+    try {
+         
+        const companies = await Company.find().sort({ jobs_open: -1 }).limit(1).lean().exec();
+        return res.status(201).send(companies);
+         
+       
+    } catch (e) {
+        return res.status(500).json({ message: e });
+    }
+
+});
 
 app.patch("/company/:id", async (req, res) => {
     const company = await Company.findByIdAndUpdate(req.params.id, req.body, {
