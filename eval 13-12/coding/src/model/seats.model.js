@@ -3,9 +3,11 @@ const { Schema, model } = require('mongoose');
 const seatSchema = new Schema({
    
     show: { 
-        type: Schema.Types.objectId,
+
+        type: Schema.Types.ObjectId,
         ref: "show", 
         required: true
+
    }
 }, {
     versionKey:false
