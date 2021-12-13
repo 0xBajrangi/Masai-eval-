@@ -124,10 +124,13 @@ router.get("/shows/nearest/:city", async (req, res) => {
             path:"theater"
             }
         })
-        
+        console.log(show)
         let available = show.filter((el) => {
-            if (el.screens.theater.location == req.params.city) {
-                return el;
+            if (el.screens != null) {
+                
+                if (el.screens.theater.location == req.params.city) {
+                    return el;
+                }
             }
         })
 
@@ -141,6 +144,26 @@ router.get("/shows/nearest/:city", async (req, res) => {
     }
 });
 
+router.post("/seats/:id/:count", async (req, res) => {
+    try {
+        let seats = await Seats.find({ show: req.params.id })
+        if (seats.length < req.params.count) {
+             return res.status(200).json({message:"seats not avalable"});
+        } else {
+            for (let i = 0; i < req.params.count; i++){
+                console.log(seats[i]._id);
+                let del = Seats.findByIdAndDelete(seats[i]._id).lean().exec();
+                console.log(del)
+            }
+        }
+        seats = await Seats.find({ show: req.params.id })
+
+        return res.status(200).json({seats,message:`${req.params.count} seats book`});
+
+    } catch (e) {
+        res.status(404).send({ message: e.message });
+    }
+});
 
 
 
